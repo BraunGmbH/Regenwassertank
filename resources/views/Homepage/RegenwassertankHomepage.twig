@@ -7,11 +7,11 @@
 {% endfor %}
 
 {% if HomeContent is not defined %}
-  {% set HomeContent = services.category.get(1424, lang) %}
+  {% set HomeContent = services.category.get(1440, lang) %}
 {% endif %}
 
 {% if startseitenIntroAktion is not defined %}
-  {% set startseitenIntroAktion = services.category.get(1426, lang) %}
+  {% set startseitenIntroAktion = services.category.get(1441, lang) %}
 {% endif %}
 
 {% if overrideHomepageContainer | trim is empty %}
@@ -49,7 +49,7 @@
         <a href="/angebote/" title="Sale / Angebote">Aus unserer Werbung - Sale / Angebote</a>
       </div>
       <div id="introText">
-          {% include category_template( 1424, lang, 0 ) ignore missing %}
+          {% include category_template( 1440, lang, 15 ) ignore missing %}
       </div>
   </div>
 {% else %}
