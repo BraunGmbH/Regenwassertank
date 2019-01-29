@@ -7,42 +7,21 @@
 {% endfor %}
 
 {% if HomeContent is not defined %}
-  {% set HomeContent = services.category.get(1440, lang) %}
+  {% set HomeContent = services.category.get(1424, lang) %}
 {% endif %}
 
 {% if startseitenIntroAktion is not defined %}
-  {% set startseitenIntroAktion = services.category.get(1441, lang) %}
+  {% set startseitenIntroAktion = services.category.get(1426, lang) %}
 {% endif %}
 
 {% if overrideHomepageContainer | trim is empty %}
 
     {% set lang = services.sessionStorage.getLang() %}
-    {% set category1 = services.category.get(config("Ceres.homepage.homepageCategory1"), lang) %}
-    {% set category2 = services.category.get(config("Ceres.homepage.homepageCategory2"), lang) %}
-    {% set category3 = services.category.get(config("Ceres.homepage.homepageCategory3"), lang) %}
-    {% set category4 = services.category.get(config("Ceres.homepage.homepageCategory4"), lang) %}
-    {% set category5 = services.category.get(config("Ceres.homepage.homepageCategory5"), lang) %}
-    {% set category6 = services.category.get(config("Ceres.homepage.homepageCategory6"), lang) %}
-
-    {% set paginatedCategoryList1 =
-    services.itemLoader.loadForTemplate(
-    'Ceres::ItemList.ItemListView',
-    itemLoaderPresets.categoryList,
-    {'categoryId': category3.id, 'page':1, 'items':4, 'sorting': itemSort}) %}
-
-    {% set paginatedCategoryList2 =
-    services.itemLoader.loadForTemplate(
-    'Ceres::ItemList.ItemListView',
-    itemLoaderPresets.categoryList,
-    {'categoryId': category6.id, 'page':1, 'items':4, 'sorting': itemSort}) %}
-
-    {% set categoryList1 = paginatedCategoryList1.documents %}
-    {% set categoryList2 = paginatedCategoryList2.documents %}
 
     {{ component( "Ceres::ItemList.Components.ItemList") }}
     {{ component( "Ceres::ItemList.Components.CategoryImageCarousel") }}
     {{ component( "Regenwassertank::Basket.Components.AddToBasket" ) }}
-
+    {{ component( "Ceres::ItemList.Components.ItemLazyImg" ) }}
 
     <div class="home container-max">
           {{ startseitenIntroAktion.details.first.description | raw }}
@@ -56,52 +35,21 @@
               <div>  {{ HomeContent.details.first.description2 | raw }}</div>
         </div>
         <div class="col-xs-12 col-lg-6 articleShow">
-          {% set homepageContainer6 = LayoutContainer.show("Ceres::Homepage.Container6") %}
-          {% if categoryList1 is not empty or homepageContainer6 | trim is not empty %}
-              <div class="m-b-2 clearfix">
-                  {% if homepageContainer6 | trim is empty %}
-                      <div class="section-header m-b-1">
-                          <h2>{{ category3.details[0].name }}</h2>
-                          <a href="{{ services.category.getURL(category3, lang) }}"
-                             class="section-link-all"><i
-                                      class="fa fa-angle-double-right"
-                                      aria-hidden="true"></i> {{ trans("Ceres::Template.homepageShowAll") }}</a>
-                      </div>
-                      <ul class="product-list row grid">
-                          {% for item in categoryList1 %}
-                              <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3 startArt">
-                                  {% include "Ceres::Category.Item.Partials.CategoryListItem" with { 'item': item } %}
-                              </li>
-                          {% endfor %}
-                      </ul>
-                  {% else %}
-                      {{ homepageContainer6 }}
-                  {% endif %}
-              </div>
-          {% endif %}
-
-          <!-- -->
           <div class="row">
-            {% set count = 1 %}
-            {% for curCat in categories %}
-              {% set itemList = services.itemList.getItemList( 'category', curCat.id, null, 100 ).documents %}
-                {% for item in itemList %}
-                  {% if  item.data.item.storeSpecial.id == 3 and count <= 4 %}
-                    <div class="col-xs-12 col-sm-6 startArt">
-                        {% include "Regenwassertank::Category.Item.Partials.CategoryListStart" with { 'item': item } %}
-                    </div>
-                    {% set count = count + 1 %}
-                    {% endif %}
-                {% endfor %}
+            {% set list = services.itemList.getItemList( 'tag_list', 3, null, 4).documents %}
+            {% for items in list %}
+                <div class="col-xs-12 col-sm-6 startArt">
+                    {% include "Regenwassertank::Category.Item.Partials.CategoryListStart" with { 'item': items } %}
+                </div>
             {% endfor %}
           </div>
         </div>
       </div>
       <div id="sale">
-        <a href="/angebote/" title="Sale / Angebote">Sale / Angebote</a>
+        <a href="/angebote/" title="Sale / Angebote">Aus unserer Werbung - Sale / Angebote</a>
       </div>
       <div id="introText">
-          {% include category_template( 1440, lang, 15 ) ignore missing %}
+          {% include category_template( 1424, lang, 0 ) ignore missing %}
       </div>
   </div>
 {% else %}

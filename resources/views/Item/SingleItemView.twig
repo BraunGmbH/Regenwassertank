@@ -10,7 +10,7 @@
 {{ component( "Regenwassertank::Basket.Components.AddToBasket" ) }}
 {{ component( "Ceres::Item.Components.ItemBundle" ) }}
 {{ component( "Regenwassertank::Containers.Components.ContainerItemList") }}
-{{ component( "Regenwassertank::ItemList.Components.CategoryItem" ) }}
+{{ component( "Regenwassertank::ItemList.Components.CategoryItemSmall" ) }}
 
 <single-item v-cloak template="#vue-single-item" :item-data="{{ item | json_encode }}" :variation-list-data="{{ variations | json_encode }}" :attribute-name-map="{{attributeNameMap | json_encode}}">
     <div slot="BeforePrice">{{ LayoutContainer.show("Ceres::SingleItem.BeforePrice", item.documents[0].data) }}</div>
@@ -51,7 +51,7 @@
         <ul>
         {%  for variationProperty in item.documents[0].data.variationProperties %}
            {% if variationProperty.property.id >= 5 and variationProperty.property.id <= 8  %}
-             <li>{{ variationProperty.values.value }}</li>
+             <li><h3>{{ variationProperty.values.value }}</h3></li>
            {% endif %}
         {% endfor %}
       </ul>
@@ -71,3 +71,97 @@
          <container-item-list :items="{{ accessory| json_encode }}"></container-item-list>
      </div>
 </single-item>
+<noscript>
+  <div class="single container-max page-content">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-5 col-lg-7 single-leftside">
+        <img src="{{ (item.documents[0].data.images | itemImages | orderByKey('position') | first).url }}">
+      </div>
+      <div class="col-md-7 col-lg-5 single-rightside">
+        <h1>{{ item.documents[0].data | itemName }}</h1>
+        <hr>
+        <p>{{ item.documents[0].data.texts.shortDescription }}</p>
+        <hr>
+        <p class="articlenumber">
+          <span class="tabStop">{{ trans("Ceres::Template.singleItemNumber") }}:
+          </span><span class="tabStop2">{{ item.documents[0].data.variation.number }}</span>
+        </p>
+        <p>
+            <span class="tabStop">{{ trans("ZisterneInfo::Template.singleItemAvailability") }}: </span>
+          {% for variationProperty in item.documents[0].data.variationProperties %}
+            {% if variationProperty.property.id == 9 %}
+              <span class="tabStop2">{{ variationProperty.values.value }}</span>
+            {% endif %}
+          {% endfor %}
+        </p>
+        <hr>
+        <div class="prices">
+            <div class="crossprice">
+              <del class="text-muted small">
+                {{ trans("ZisterneInfo::Template.UVP") }}{{ item.documents[0].data.prices.rrp.unitPrice.formatted }}
+              </del>
+            </div>
+          <div class="price">
+            <span>
+              {{ item.documents[0].data.prices.default.unitPrice.formatted }}
+            </span>
+          </div>
+          <div class="sold">
+            {% for variationProperty in item.documents[0].data.variationProperties %}
+              {% if variationProperty.property.id == 1 %}
+                <p>{{ variationProperty.values.value }}
+                  verkauft*</p>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <div class="base-price text-muted">
+            <div>
+              {{ trans("Ceres::Template.singleItemUnitPrice") }}:
+              <span class="base-price-value">
+                {{ item.documents[0].data.prices.default.basePrice }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <span class="vat">
+        {{ trans("ZisterneInfo::Template.singleItemVatTXT1") }} <span class="fa fa-arrow-right"></span>
+         <a data-toggle="modal" href="#shippingscosts" title="{{ trans("ZisterneInfo::Template.singleItemVatTXT2") }}">{{ trans("ZisterneInfo::Template.singleItemVatTXT2") }}</a>
+         </span>
+        <hr>
+        <button class="btn btn-block btn-primary" @click="addToBasket()">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            {{ trans("Ceres::Template.singleItemAddToBasket") }}
+        </button>
+        <div class="bulletpoints">
+          <ul>
+            {% for variationProperty in item.documents[0].data.variationProperties %}
+              {% if variationProperty.property.id >= 5 and variationProperty.property.id <= 8 %}
+                <li>{{ variationProperty.values.value }}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-7 m-y-3">
+        <p><strong>Beschreibung</strong></p>
+        {{ item.documents[0].data.texts.description }}
+        <hr>
+        <p><strong>Technische Daten</strong></p>
+        {{ item.documents[0].data.texts.technicalData }}
+      </div>
+    </div>
+  </div>
+  </noscript>

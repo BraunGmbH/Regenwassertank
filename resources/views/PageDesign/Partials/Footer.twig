@@ -1,14 +1,19 @@
+{% set companyName  = trans("Ceres::Template.headerCompanyName") %}
+{% set isHome = services.template.isHome() %}
+
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 {% if footerContent is not defined %}
-  {% set footerContent = services.category.get(1442, lang) %}
+  {% set footerContent = services.category.get(1427, lang) %}
 {% endif %}
 <footer>
+  {% if isHome %}
   <div class="container-max footerTop">
     <hr>
     <div class="row">
       {{ footerContent.details.first.description | raw }}
     </div>
   </div>
+  {% endif %}
   <div class="footerMiddle">
       <div class="container-max">
           {{ footerContent.details.first.description2 | raw }}
@@ -17,8 +22,8 @@
   <div class="footerBottom">
       <div class="container-max">
         <a href="/" title="zur Startseite">
-          <img src="https://cdn02.plentymarkets.com/yi9z0xbw5t14/frontend/Regenwassertank/ceres/img/Regenwassertank-logo.png" alt="{{ companyName }}" tile="{{ companyName }}"/></a>
-        <p>Alle Preise inkl. 19% Mehrwertsteuer<br>* Die verkauften Stückzahlen beziehen sich auf Verkäufe in unseren Shops und Marktplätzen<br>Copyright 2018 © BRAUN GmbH - Alle Rechte vorbehalten</p>
+          <img src="https://cdn02.plentymarkets.com/yi9z0xbw5t14/frontend/Regenwassertank/ceres/img/Regenwassertank-logo.png" alt="{{ companyName }}" title="{{ companyName }}"/></a>
+        <p>Alle Preise inkl. 19% Mehrwertsteuer.<br>* Die verkauften Stückzahlen beziehen sich auf Verkäufe in unseren Shops und Marktplätzen.<br>Copyright 2018 © BRAUN GmbH - Alle Rechte vorbehalten.</p>
       </div>
     </div>
   </footer>

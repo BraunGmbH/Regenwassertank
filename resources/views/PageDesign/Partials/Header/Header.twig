@@ -14,15 +14,16 @@
 {% set currencyFormat = config("Ceres.currency.format") %}
 {% set currencyFormatSelect = config("Ceres.currency.format_selection") %}
 {% set companyLogo  = config("Ceres.header.company_logo") %}
+{% set companyName  = trans("Ceres::Template.headerCompanyName") %}
 
 <header id="page-header" class="top-bar pos-f-t">
 
         <div id="topBar">
             <div class="container-max">
               <ul id="headerLinks">
-                <li><a data-toggle="modal" href="#hotline" class="hidden-xs-down"><i class="fa fa-check-circle"></i>{{ trans("Regenwassertank::Template.headerHotlineTxt") }} {{ trans("Regenwassertank::Template.headerHotlineNr") }}</a><a data-toggle="modal" href="#hotline" class="hidden-sm-up"><i class="fa fa-phone"></i><span class="pipe"></span></a></li>
-                <li><a data-toggle="modal" href="#lieferung"><i class="fa fa-check-circle"></i>{{ trans("Regenwassertank::Template.headerLieferung") }}</a></li>
-                <li><a data-toggle="modal" href="#ssl"><i class="fa fa-check-circle"></i>{{ trans("Regenwassertank::Template.headerSSL") }}</a></li>
+                <li><a data-toggle="modal" href="#hotline"  title="{{ trans("Regenwassertank::Template.headerHotlineTxt") }}" class="hidden-xs-down"><i class="fa fa-check-circle"></i>{{ trans("Regenwassertank::Template.headerHotlineTxt") }} {{ trans("Regenwassertank::Template.headerHotlineNr") }}</a><a data-toggle="modal" href="#hotline" class="hidden-sm-up"><i class="fa fa-phone"></i><span class="pipe"></span></a></li>
+                <li><a data-toggle="modal" href="#lieferung" title="{{ trans("Regenwassertank::Template.headerLieferung") }}"><i class="fa fa-check-circle"></i>{{ trans("Regenwassertank::Template.headerLieferung") }}</a></li>
+                <li><a data-toggle="modal" href="#ssl" title="{{ trans("Regenwassertank::Template.headerSSL") }}"><i class="fa fa-check-circle"></i>{{ trans("Regenwassertank::Template.headerSSL") }}</a></li>
               </ul>
 
                 <ul id="controlsList" class="controls-list list-inline">
@@ -99,12 +100,7 @@
                 </div>
         </div>
         {% include "Regenwassertank::PageDesign.Partials.Header.Navigation" %}
-        {% if not services.template.isHome() and not services.template.isMyAccount() and not services.template.isCheckout() %}
-          <div id="breadcrumbs">
-            {% include "Regenwassertank::PageDesign.Partials.Header.Breadcrumb" %}
-          </div>
-        {% endif %}
-</header>
+      </header>
 
 
 {% if category.linklist == "Y" %}

@@ -1,6 +1,7 @@
 {% extends getPartial('page-design') %}
 {% import "Ceres::Category.Macros.CategoryTree" as Tree %}
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+{% set companyLogo  = config("Ceres.header.company_logo") %}
 
 {% block PageBody %}
 
@@ -19,11 +20,6 @@
   <div class="row">
     {% if ceresConfig.header.showNavBars == "side" or ceresConfig.header.showNavBars == "both" %}
       <aside class="col-xs-12 col-md-3" v-stick-in-parent>
-        <div class="sidebar-categories hidden-md-down">
-          <p class="asideHeadline">Kategorien</p>
-            {{ include('Regenwassertank::PageDesign.Partials.Header.SideNavigation.twig') }}
-        </div>
-        {{ LayoutContainer.show("Ceres::CategoryItem.SideNavBarBottom") }}
         <div class="filterPanel">
             <p class="asideHeadline">Produktfilter</p>
             {% set overrideSearchFilters = LayoutContainer.show("Ceres::Search.Filter", facets ) %}
@@ -32,7 +28,7 @@
             {% else %}
                 {{ overrideSearchFilters }}
             {% endif %}
-            <item-filter-tag-list></item-filter-tag-list
+            <item-filter-tag-list></item-filter-tag-list>
           </div>
             <p class="asideHeadline">Sortierung</p>
           <item-list-sorting template="#vue-item-list-sorting" :sorting-list="{{ searchOptions.sorting | json_encode }}" :default-sorting="{{ searchOptions.defaultSorting | json_encode }}"></item-list-sorting>
@@ -43,17 +39,18 @@
     {% endif %}
 
     <main class="{% if ceresConfig.header.showNavBars == "side" or ceresConfig.header.showNavBars == "both" %}col-md-9 {% endif %}col-xs-12 categoriegrid page-content categoryItem cat-id-{{ category.id}}">
+      <div id="breadcrumbs">
+        {% include "Regenwassertank::PageDesign.Partials.Header.Breadcrumb" %}
+      </div>
         <div class="catPic">
             <div class="catIntro">
               <h1 class="category-title">{{ category.details[0].name }}</h1>
               <h2 class="category-subtitle">{{ category.details[0].shortDescription | raw }}</h2>
             </div>
-            <img src="/documents/{{category.details[0].image2Path}}" alt="{{ category.details[0].name }}">
+            <img src="/documents/{{category.details[0].image2Path}}" alt="{{ category.details[0].name }}" title="{{ category.details[0].name }}">
           </div>
           <div id="category-description-container" class="category-description">{{ category.details[0].description | raw }}</div>
-
-
-        
+          <button class="btn filterMe"><span class="fa fa-sliders"></span></button>
 
         <div id="twig-rendered-item-list" class="item-list-frame{% if ceresConfig.item.loadingAnimationType == "blur" %} blur-effect{% endif %}">
             {% if ceresConfig.item.loadingAnimationType != "blur" %}
@@ -80,7 +77,16 @@
 {% endblock %}
 
 {% block PartialHead %}
-    <script type="application/ld+json">{"@context": "http://schema.org","@type": "WebSite","url": "{{ webstoreConfig.domainSsl }}","potentialAction":{"@type": "SearchAction","target": "{{ domainSsl }}/search?query={search_term}","query-input": "required name=search_term"}}</script>
+<script type = "application/ld+json" > {
+     "@context": "http://schema.org",
+     "@type": "WebSite",
+     "url": "{{ webstoreConfig.domainSsl }}",
+     "potentialAction": {
+         "@type": "SearchAction",
+         "target": "{{ webstoreConfig.domainSsl }}/search?query={search_term}",
+         "query-input": "required name=search_term"
+     }
+ } </script>
 
     {% if currentPage-1 > 0 %}
         <link rel="prev" href="{{ webstoreConfig.domainSsl }}?{{ query | merge({'page' : currentPage-1 }) | url_encode }}" />
@@ -96,4 +102,10 @@
     <meta name="keywords" content="{{ category.details[0].metaKeywords }}">
 
     <meta name="robots" content="{{ metaRobots }}">
+    <meta property="og:title" content="{% if category.details[0].metaTitle %}{{ category.details[0].metaTitle }}{% else %}{{ category.details[0].name }}{% endif %}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/{{ category.details[0].nameUrl }}/"/>
+    <meta property="og:description" content="{{ category.details[0].metaDescription }}"/>
+    <meta property="og:image"
+        content="{% if ('http' in companyLogo) or ('layout/' in companyLogo) %}{{ companyLogo }}{% else %}{{ plugin_path('Ceres') }}/{{ companyLogo }}{% endif %}"/>
 {% endblock %}

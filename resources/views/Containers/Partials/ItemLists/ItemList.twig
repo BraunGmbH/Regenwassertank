@@ -1,6 +1,6 @@
 {{ component( "Regenwassertank::Containers.Components.ContainerItemList" ) }}
 {{ component( "Ceres::Containers.Components.LastSeenItemList" ) }}
-{{ component( "Regenwassertank::ItemList.Components.CategoryItem" ) }}
+{{ component( "Regenwassertank::ItemList.Components.CategoryItemSmall" ) }}
 
 {% set listType = config("Ceres.item.lists." ~ itemListNo ~ ".list_type") %}
 {% set tagIds = config("Ceres.item.lists." ~ itemListNo ~ ".tag_ids") | split(",") %}

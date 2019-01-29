@@ -6,7 +6,7 @@
 {{ component( "Ceres::Customer.Components.Login" ) }}
 {{ component( "Ceres::Customer.Components.Registration" ) }}
 {{ component( "Regenwassertank::Basket.Components.AddItemToBasketOverlay" ) }}
-{{ component( "Ceres::PageDesign.Components.Popper" ) }}
+{{ component( "Regenwassertank::PageDesign.Components.Popper" ) }}
 {{ component( "Ceres::Containers.Components.ContainerItemList" ) }}
 {{ component( "Ceres::Containers.Components.LastSeenItemList" ) }}
 {{ component( "Ceres::Category.Components.CategoryBreadcrumbs" ) }}
@@ -21,6 +21,44 @@
 
 <head>
     {% include getPartial('head') %}
+
+    <script type="application/ld+json" > {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "Regenwassertank",
+        "url": "https://www.Regenwassertank.com",
+        "contactPoint": [{
+            "@type": "ContactPoint",
+            "telephone": "+4971628068070",
+            "contactType": "customer service",
+            "contactOption": "TollFree",
+            "areaServed": "DE",
+            "availableLanguage": ["German"]
+        }]
+    }
+</script>
+<script type="application/ld+json" > {
+    "@context": "http://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Regenwassertank",
+    "openingHours": [
+        "Mo-Th 07:30-12:30",
+        "Mo-Th 13:00-16:30",
+        "Fr 07:30-12:30",
+        "Fr 13:00-14:00"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Gingen an der Fils",
+        "addressRegion": "Germany",
+        "postalCode": "73333 ",
+        "streetAddress": " Bahnhofstraße 19"
+      },
+      "telephone": "+4971628068070",
+      "url": "https://www.Regenwassertank.com",
+      "image": "https://cdn02.plentymarkets.com/yi9z0xbw5t14/frontend/Regenwassertank/ceres/img/Regenwassertank-logo-header.png"
+}
+</script>
 
     {% block PartialHead %}
     {% endblock %}
@@ -153,7 +191,7 @@
         <!-- HOTLINE MODAL -->
         <div id="hotline-modal-wrapper">
           {% if hotlineModalContent is not defined %}
-            {% set hotlineModalContent = services.category.get(1443, lang) %}
+            {% set hotlineModalContent = services.category.get(1428, lang) %}
           {% endif %}
 
           <div class="modal fade hotline-modal" id="hotline" tabindex="-1" role="dialog">
@@ -177,7 +215,7 @@
         <!-- SSL MODAL -->
         <div id="ssl-modal-wrapper">
           {% if sslModalContent is not defined %}
-            {% set sslModalContent = services.category.get(1445, lang) %}
+            {% set sslModalContent = services.category.get(1429, lang) %}
           {% endif %}
 
           <div class="modal fade ssl-modal" id="ssl" tabindex="-1" role="dialog">
@@ -201,7 +239,7 @@
         <!-- LIEFERUNG MODAL -->
         <div id="lieferung-modal-wrapper">
           {% if lieferungModalContent is not defined %}
-            {% set lieferungModalContent = services.category.get(1444, lang) %}
+            {% set lieferungModalContent = services.category.get(1430, lang) %}
           {% endif %}
 
           <div class="modal fade lieferung-modal" id="lieferung" tabindex="-1" role="dialog">
@@ -245,7 +283,7 @@
 
 
 {{ Loader.include_components() }}
-
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 {{ LayoutContainer.show("Ceres::Script.Loader") }}
 
 {{ Translations.add( "Ceres", "Template" ) }}
@@ -261,7 +299,8 @@
 {% endfor %}
 
 {{ LayoutContainer.show("Ceres::Script.AfterScriptsLoaded") }}
-
+<!--<script defer src="https://cdn02.plentymarkets.com/yi9z0xbw5t14/frontend/Regenwassertank/ceres/js/werk38.js"></script>-->
+<script defer src="https://cdn02.plentymarkets.com/yi9z0xbw5t14/frontend/Regenwassertank/ceres/js/werk38-min.js"></script>
 {{ get_filtered_tags() }}
 
 <script>
