@@ -6,10 +6,12 @@
 {% set lvl2Categories1 = [401] %}
 {% set lvl2Categories2 = [] %}
 {% set lvl2Categories3 = [1095,1091] %}
+{% set lvl2Categories4 = [] %}
+{% set lvl2Categories5 = [] %}
 
 
   <p class="hidden">
-  {% for test in categories %} 
+  {% for test in categories %}
    <span>{{ test.id }}</span>
    {% endfor %}
   </p>
@@ -21,14 +23,14 @@
   {% set urlNow = currentScopeUrl ~ "/" ~ category.details[0].nameUrl %}
 
   {% if category.details[0] %}
-      <li id="plentycat_{{ category.id }}" class="level{{ level }} {% for breadcrumb in breadcrumbs %}{% if category.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+      <li id="plentycat_{{ category.id }}" class="level{{ level }} {% for breadcrumb in categoryBreadcrumbs %}{% if category.id == breadcrumb.id %} active{% endif %}{% endfor %}">
           <a href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ category.details[0].name }}</a>
           {% if level == 0 %}
             {% if lvl2Categories0 is not empty  %}
               <ul class="dropdown level{{counter}}">
                   {% for categoryChild in categories if categoryChild.id in lvl2Categories0 %}
                     {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
-                    <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in breadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+                    <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in categoryBreadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
                         <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
                     </li>
                   {% endfor %}
@@ -39,7 +41,7 @@
               <ul class="dropdown level{{counter}}">
                   {% for categoryChild in categories if categoryChild.id in lvl2Categories1 %}
                     {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
-                    <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in breadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+                    <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in categoryBreadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
                         <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
                     </li>
                   {% endfor %}
@@ -50,7 +52,7 @@
               <ul class="dropdown level{{counter}}">
                   {% for categoryChild in categories if categoryChild.id in lvl2Categories2 %}
                     {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
-                    <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in breadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+                    <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in categoryBreadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
                         <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
                     </li>
                   {% endfor %}
@@ -61,7 +63,29 @@
               <ul class="dropdown level{{counter}}">
                   {% for categoryChild in categories if categoryChild.id in lvl2Categories3 %}
                     {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
-                    <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in breadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+                    <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in categoryBreadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+                        <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+            {% endif %}
+          {% elseif level == 4 %}
+            {% if lvl2Categories4 is not empty  %}
+              <ul class="dropdown level{{counter}}">
+                  {% for categoryChild in categories if categoryChild.id in lvl2Categories4 %}
+                    {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
+                    <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in categoryBreadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+                        <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+            {% endif %}
+          {% elseif level == 5 %}
+            {% if lvl2Categories5 is not empty  %}
+              <ul class="dropdown level{{counter}}">
+                  {% for categoryChild in categories if categoryChild.id in lvl2Categories5 %}
+                    {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
+                    <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in categoryBreadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
                         <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
                     </li>
                   {% endfor %}
