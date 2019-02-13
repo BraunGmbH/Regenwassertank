@@ -28,7 +28,7 @@
                   {% endfor %}
                 </ul>
             {% endif %}
-          {% else if level == 1 %}
+          {% elseif level == 1 %}
             {% if lvl2Categories1 is not empty  %}
               <ul class="dropdown level{{counter}}">
                   {% for categoryChild in categories if category.id in lvl2Categories1 %}
@@ -39,7 +39,7 @@
                   {% endfor %}
                 </ul>
             {% endif %}
-          {% else if level == 2 %}
+          {% elseif level == 2 %}
             {% if lvl2Categories2 is not empty  %}
               <ul class="dropdown level{{counter}}">
                   {% for categoryChild in categories if category.id in lvl2Categories2 %}
