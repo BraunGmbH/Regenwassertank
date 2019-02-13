@@ -1,16 +1,37 @@
 
 {% set lang = services.sessionStorage.getLang() %}
 
-{% set lvl1Categories = [1448,1447,1446] %}
-{% set lvl2Categories0 = [1452] %}
-{% set lvl2Categories1 = [1453] %}
-{% set lvl2Categories2 = [1454,1452] %}
-{% set lvl2Categories3 = [1292] %}
-{% set lvl2Categories4 = [1293,1453,1454] %}
+{% set lvl1Categories = [1095,1093,401] %}
+{% set lvl2Categories0 = [1093] %}
+{% set lvl2Categories1 = [401] %}
+{% set lvl2Categories2 = [1095,1091] %}
 
 
 <ul class="mainmenu">
-  {% for category in categories %}
-    <li> {{ category.id  }} -  {{ category.details[0].name }}</li>
-  {% endfor %}
+  {% for category in categories if category.id in lvl1Categories %}
+
+  {% set level = 0 %}
+  {% set counter = 0 %}
+  {% set urlNow = currentScopeUrl ~ "/" ~ category.details[0].nameUrl %}
+
+  {% if category.details[0] %}
+      <li id="plentycat_{{ category.id }}" class="{% if category.children is not empty %}ddown parent{% endif %}{% for breadcrumb in breadcrumbs %}{% if category.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+          <a href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ category.details[0].name }}</a>
+          {% if level == 0 %}
+            {% if lvl2Categories0 is not empty  %}
+              <ul class="dropdown level{{counter}}">
+                  {% for categoryChild in categories if category.id in lvl2Categories0 %}
+                    {% set urlNowChild = urlNow ~ "/" ~ categoryChild.details[0].nameUrl %}
+                    <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in breadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+                        <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+            {% endif %}
+          {% endif %}
+      </li>
+      {% set level = level + 1 %}
+      {% set counter = counter + 1 %}
+  {% endif %}
+{% endfor %}
 </ul>
