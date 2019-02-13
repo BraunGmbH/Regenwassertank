@@ -328,24 +328,27 @@
     }
 
     (function($) {
-        var header = document.getElementById('page-header');
-        var unfixedElements = [];
+      var header = document.getElementById('page-header');
+      var unfixedElements = [];
 
-        if ( !!header )
-        {
-            function calculateBodyOffset()
-            {
-                if ( header.classList.contains('pos-f-t') )
-                {
-                    var bodyOffset = 0;
-                    var children = header.children;
-                    for( var i = 0; i < children.length; i++ )
-                    {
-                        bodyOffset += children[i].getBoundingClientRect().height;
-                    }
-                    document.getElementById('vue-app').style.marginTop = bodyOffset + 'px';
-                }
-            }
+      if ( !!header )
+      {
+          function calculateBodyOffset()
+          {
+              if ( header.classList.contains('top-bar'))
+              {
+                  var bodyOffset = 0;
+                  // Get current header with children
+                  var children = document.getElementById('page-header').children;
+                  for( var i = 0; i < children.length; i++ )
+                  {
+                      bodyOffset += children[i].getBoundingClientRect().height;
+                  }
+
+                  document.getElementById('vue-app').style.marginTop = bodyOffset + 'px';
+                  document.getElementById('vue-app').style.minHeight = "calc(100vh - " + bodyOffset + "px)";
+              }
+          }
 
             function getUnfixedElements()
             {
