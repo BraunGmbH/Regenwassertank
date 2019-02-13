@@ -10,6 +10,8 @@
 {% set lvl2Categories5 = [] %}
 
 
+{% set mobileCategories = [1095,1093,401,1094] %}
+
   <p class="hidden">
   {% for test in categories %}
    <span>{{ test.id }}</span>
@@ -98,3 +100,5 @@
   {% endif %}
 {% endfor %}
 </ul>
+
+<mobile-navigation :navigation-tree-data="{{ mobileCategories | json_encode }}" :initial-category="{{ initialCategory | json_encode }}" template="#vue-mobile-navigation"></mobile-navigation>
