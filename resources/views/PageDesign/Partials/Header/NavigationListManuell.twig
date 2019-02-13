@@ -8,10 +8,10 @@
 
 
 <ul class="mainmenu">
-  {% for category in categories if category.id in lvl1Categories %}
-
   {% set level = 0 %}
   {% set counter = 0 %}
+  
+  {% for category in categories if category.id in lvl1Categories %}
   {% set urlNow = currentScopeUrl ~ "/" ~ category.details[0].nameUrl %}
 
   {% if category.details[0] %}
