@@ -36,7 +36,7 @@
         </div>
         <div class="col-xs-12 col-lg-6 articleShow">
           <div class="row">
-            {% set list = services.itemList.getItemList( 'tag_list', 3, null, 4).documents %}
+            {% set list = services.itemList.getItemList( 'tag_list', 4, null, 4).documents %}
             {% for items in list %}
                 <div class="col-xs-12 col-sm-6 startArt">
                     {% include "Regenwassertank::Category.Item.Partials.CategoryListStart" with { 'item': items } %}
