@@ -21,6 +21,8 @@
     {% if ceresConfig.header.showNavBars == "side" or ceresConfig.header.showNavBars == "both" %}
       <aside class="col-xs-12 col-md-3" v-stick-in-parent>
         <div class="filterPanel">
+            <p class="asideHeadline">Kategorien</p>
+              {% include "Regenwassertank::PageDesign.Partials.Header.SideNavigationManuell" %}
             <p class="asideHeadline">Produktfilter</p>
             {% set overrideSearchFilters = LayoutContainer.show("Ceres::Search.Filter", facets ) %}
             {% if overrideSearchFilters | trim is empty %}
