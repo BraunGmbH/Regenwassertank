@@ -9,8 +9,8 @@
 {% set lvl2Categories4 = [1293,1453,1454] %}
 
 
-<ul>
+<ul class="mainmenu">
   {% for category in categories %}
-    <li> {{ category.id  }}
+    <li> {{ category.id  }} -  {{ category.details[0].name }}</li>
   {% endfor %}
 </ul>
