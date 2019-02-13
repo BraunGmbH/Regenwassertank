@@ -1,0 +1,20 @@
+{% macro get_menu_manuell(breadcrumbs, categories, childCategories, currentScopeUrl,level,counter) %}
+    {% import _self as sidemenu %}
+    {% set urlNow = currentScopeUrl %}
+
+      {% for category in categories %}
+          {% set urlNow = currentScopeUrl ~ "/" ~ category.details[0].nameUrl %}
+          {% if category.details[0] %}
+              <li id="plentycat_{{ category.id }}" class="{% if category.children is not empty %}ddown parent{% endif %}{% for breadcrumb in breadcrumbs %}{% if category.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+                  <a href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ category.details[0].name }}</a>
+                  {% if childCategories is not empty  %}
+                    {% if level == 0 %}
+                      <ul class="dropdown level{{counter}}">
+                          {{ sidemenu.get_menu(breadcrumbs, childCategories, childCategories.children, urlNow, counter + 1) }}
+                      </ul>
+                    {% %}
+                  {% endif %}
+              </li>
+          {% endif %}
+      {% endfor %}
+{% endmacro %}
