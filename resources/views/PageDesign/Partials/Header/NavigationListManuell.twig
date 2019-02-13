@@ -10,7 +10,7 @@
 
 
 <ul>
-  {% for category in lvl1Categories %}
+    {% for category in categories if category.id in lvl1Categories %}
 
       {% set level = 0 %}
       {% set counter = 0 %}
