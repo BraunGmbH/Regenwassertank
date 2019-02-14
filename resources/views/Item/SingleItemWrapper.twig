@@ -2,6 +2,12 @@
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 {% import "Ceres::PageDesign.Macros.ItemName" as ItemName %}
 
+{% if 'ontouchstart' in document.documentElement %}
+  {% set isMobile = true %}
+{% else %}
+  {% set isMobile = false %}
+{% endif %}
+
 {% block PartialHead %}
     <meta name="description" content="{{ item.documents[0].data.texts.metaDescription }}">
     <meta name="keywords" content="{{ item.documents[0].data.texts.keywords | json_encode }}">
