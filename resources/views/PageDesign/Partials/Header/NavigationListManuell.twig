@@ -20,15 +20,16 @@
 <ul class="mainmenu">
   {% set level = 0 %}
   {% set counter = 0 %}
+  {% set ishover = false %}
 
   {% for category in categories if category.id in lvl1Categories %}
   {% set urlNow = currentScopeUrl ~ "/" ~ category.details[0].nameUrl %}
 
   {% if category.details[0] %}
-      <li id="plentycat_{{ category.id }}" class="level{{ level }} {% for breadcrumb in categoryBreadcrumbs %}{% if category.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+      <li @hover="ishover = true" id="plentycat_{{ category.id }}" class="level{{ level }} {% for breadcrumb in categoryBreadcrumbs %}{% if category.id == breadcrumb.id %} active{% endif %}{% endfor %}">
           <a href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ category.details[0].name }}</a>
           {% if level == 0 %}
-            {% if lvl2Categories0 is not empty  %}
+            {% if lvl2Categories0 is not empty and ishover  %}
               <ul class="dropdown level{{counter}}">
                   {% for categoryChild in categories if categoryChild.id in lvl2Categories0 %}
                     {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
