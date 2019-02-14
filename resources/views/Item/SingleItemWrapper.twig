@@ -9,8 +9,14 @@
     <meta property="og:title" content="{{ ItemName.get(item.documents[0].data | itemName, item.documents[0].data.variation.bundleType) }}" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ webstoreConfig.domainSsl }}{{ item.documents[0].data | itemURL }}" />
-    <meta property="og:image" content="{{  item.documents[0].data.images.all[0].url }}" />
+    <meta property="og:image" content="{{ webstoreConfig.domainSsl }}{{  item.documents[0].data.images.all[0].url }}" />
     <meta property="og:description" content="{{ item.documents[0].data.texts.shortDescription }}" />
+
+    <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="{{ webstoreConfig.domainSsl }}{{ item.documents[0].data | itemURL }}" />
+<meta name="twitter:title" content="{{ ItemName.get(item.documents[0].data | itemName, item.documents[0].data.variation.bundleType) }}">
+<meta name="twitter:description" content="{{ item.documents[0].data.texts.shortDescription }}">
+<meta name="twitter:image" content="{{ webstoreConfig.domainSsl }}{{  item.documents[0].data.images.all[0].url }}">
 
     <script type="application/ld+json"> {
       "@context": "http://schema.org/",
