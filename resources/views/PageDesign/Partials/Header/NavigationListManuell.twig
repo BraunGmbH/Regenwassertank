@@ -26,7 +26,7 @@
   {% set urlNow = currentScopeUrl ~ "/" ~ category.details[0].nameUrl %}
 
   {% if category.details[0] %}
-      <li @hover="ishover = true" id="plentycat_{{ category.id }}" class="level{{ level }} {% for breadcrumb in categoryBreadcrumbs %}{% if category.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+      <li @focus="ishover = true" id="plentycat_{{ category.id }}" class="level{{ level }} {% for breadcrumb in categoryBreadcrumbs %}{% if category.id == breadcrumb.id %} active{% endif %}{% endfor %}">
           <a href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ category.details[0].name }}</a>
           {% if level == 0 %}
             {% if lvl2Categories0 is not empty and ishover  %}
