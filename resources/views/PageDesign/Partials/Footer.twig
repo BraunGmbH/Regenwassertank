@@ -6,6 +6,7 @@
   {% set footerContent = services.category.get(1442, lang) %}
 {% endif %}
 <footer>
+  <!--
   {% if isHome %}
   <div class="container-max footerTop">
     <hr>
@@ -13,7 +14,7 @@
       {{ footerContent.details.first.description | raw }}
     </div>
   </div>
-  {% endif %}
+  {% endif %}-->
   <div class="footerMiddle">
       <div class="container-max">
           {{ footerContent.details.first.description2 | raw }}
