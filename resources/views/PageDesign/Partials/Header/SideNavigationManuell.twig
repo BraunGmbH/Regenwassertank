@@ -19,6 +19,7 @@
             <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in categoryBreadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
               <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
             </li>
-          {% endfor %}          
+          {% endfor %}
+        {% endif %}          
     {% endfor %}
   </ul>
