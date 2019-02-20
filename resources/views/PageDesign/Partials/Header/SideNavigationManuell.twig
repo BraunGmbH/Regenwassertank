@@ -14,12 +14,20 @@
     {% set urlNow = currentScopeUrl ~ "/" ~ category.details[0].nameUrl %}
 
     {% if category.details[0] and category.id == lvl1Categories[0] and lvl2Categories0 is not empty %}
-          {% for categoryChild in categories if categoryChild.id in lvl2Categories0 %}
-            {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
-            <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in categoryBreadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
-              <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
-            </li>
-          {% endfor %}
-        {% endif %}          
+      {% for categoryChild in categories if categoryChild.id in lvl2Categories0 %}
+        {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
+        <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in categoryBreadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+          <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
+        </li>
+      {% endfor %}
+    {% elseif category.details[0] and category.id == lvl1Categories[1] and lvl2Categories1 is not empty %}
+      {% for categoryChild in categories if categoryChild.id in lvl2Categories1 %}
+        {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
+        <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in categoryBreadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
+          <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
+        </li>
+      {% endfor %}
+    {% endif %}
+
     {% endfor %}
   </ul>
