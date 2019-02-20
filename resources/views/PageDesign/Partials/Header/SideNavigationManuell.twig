@@ -13,6 +13,8 @@
   {% for category in categories if category.id in lvl1Categories %}
     {% set urlNow = currentScopeUrl ~ "/" ~ category.details[0].nameUrl %}
 
+    <p class="hidden">{{ category.id}} | {{ lvl1Categories[0] }}</p>
+
     {% if category.details[0] and category.id == lvl1Categories[0] and lvl2Categories0 is not empty %}
       {% for categoryChild in categories if categoryChild.id in lvl2Categories0 %}
         {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
