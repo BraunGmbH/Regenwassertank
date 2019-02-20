@@ -39,7 +39,7 @@
               <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
             </li>
           {% endfor %}
-        {% elseif category.details[0] and first.id == lvl1Categories[3] and category.id == lvl1Categories[3] and lvl2Categories3 is not empty %}
+        {% elseif category.details[0] and ((first.id == lvl1Categories[3] and category.id == lvl1Categories[3]) or first.id in lvl2Categories3) and lvl2Categories3 is not empty %}
           {% for categoryChild in categories if categoryChild.id in lvl2Categories3 %}
             {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
             <li id="plentycat_{{ categoryChild.id }}" class="{% for breadcrumb in categoryBreadcrumbs %}{% if categoryChild.id == breadcrumb.id %} active{% endif %}{% endfor %}">
