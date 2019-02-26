@@ -304,6 +304,12 @@
 {{ get_filtered_tags() }}
 
 <script>
+
+    var isHover = new Vue({
+      data: {
+          hover: false
+      }
+    });
     var rootElement = document.getElementById("vue-app");
     var errorElement = document.getElementById("vue-error");
 
