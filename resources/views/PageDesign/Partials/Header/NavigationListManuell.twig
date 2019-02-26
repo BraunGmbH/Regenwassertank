@@ -23,7 +23,7 @@
 
         {% if category.details[0] %}
           <li id="plentycat_{{ category.id }}" class="level{{ level }} {% if category.id == first.id or (first.id in lvl2Categories0 and level == 0) or (first.id in lvl2Categories1 and level == 1) or (first.id in lvl2Categories2 and level == 2) or (first.id in lvl2Categories3 and level == 3) %} active{% endif %}">
-            <a @mouseover="isHover = true" @mouseleave="isHover = false" href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ category.details[0].name }}</a>
+            <a href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ category.details[0].name }}</a>
 
             {% if level == 0 %}
               {% if lvl2Categories0 is not empty and isHover %}
@@ -37,7 +37,7 @@
                 </ul>
               {% endif %}
             {% elseif level == 1 %}
-              {% if lvl2Categories1 is not empty and isHover %}
+              {% if lvl2Categories1 is not empty %}
                 <ul class="dropdown level{{counter}}">
                   {% for categoryChild in categories if categoryChild.id in lvl2Categories1 %}
                     {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
@@ -48,7 +48,7 @@
                 </ul>
               {% endif %}
             {% elseif level == 2 %}
-              {% if lvl2Categories2 is not empty and isHover %}
+              {% if lvl2Categories2 is not empty %}
                 <ul class="dropdown level{{counter}}">
                   {% for categoryChild in categories if categoryChild.id in lvl2Categories2 %}
                     {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
@@ -59,7 +59,7 @@
                 </ul>
               {% endif %}
             {% elseif level == 3 %}
-              {% if lvl2Categories3 is not empty and isHover %}
+              {% if lvl2Categories3 is not empty %}
                 <ul class="dropdown level{{counter}}">
                   {% for categoryChild in categories if categoryChild.id in lvl2Categories3 %}
                     {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
@@ -79,3 +79,19 @@
     {% endif %}
   {% endfor %}
 </ul>
+
+<script>
+  var test = document.getElementByClass("nav-link");
+
+
+  // this handler will be executed only once when the cursor moves over the unordered list
+  test.addEventListener("mouseenter", function( event ) {
+    var isHover = true;
+  }, false);
+
+
+  // this handler will be executed every time the cursor is moved over a different list item
+  test.addEventListener("mouseover", function( event ) {
+    var isHover = true;
+  }, false);
+</script>
