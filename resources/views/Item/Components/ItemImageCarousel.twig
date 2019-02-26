@@ -5,8 +5,7 @@
         <div id="single-carousel" class="owl-carousel owl-theme owl-single-item" ref="single">
           <div v-for="image in singleImages">
           <a :href="$options.filters.itemImages(currentVariation.documents[0].data.images, 'url').find(img => img.position === image.position).url" data-lightbox="single-big-image-gallery">
-              <img v-if="isMobile == true" :alt="getAltText(image)" class="owl-lazy" :data-src="$options.filters.itemImages(currentVariation.documents[0].data.images, 'urlMiddle').find(img => img.position === image.position).url" :title="getItemName()"  itemprop="image">
-              <img v-else :alt="getAltText(image)" class="owl-lazy" :data-src="image.url" :title="getItemName()"  itemprop="image">
+              <img :alt="getAltText(image)" class="owl-lazy" :data-src="image.url" :title="getItemName()"  itemprop="image">
             </a>
           </div>
         </div>
