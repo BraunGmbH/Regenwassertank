@@ -6,6 +6,8 @@
 {% set lvl2Categories2 = [171, 172, 174, 173, 176] %}
 {% set lvl2Categories3 = [408, 170] %}
 
+{% set setHover = [true, false] %}
+
 <p class="hidden test1">
   {% for test in categories %}
     <span>{{ test.id }}</span>
@@ -22,10 +24,10 @@
 
         {% if category.details[0] %}
           <li id="plentycat_{{ category.id }}" class="level{{ level }} {% if category.id == first.id or (first.id in lvl2Categories0 and level == 0) or (first.id in lvl2Categories1 and level == 1) or (first.id in lvl2Categories2 and level == 2) or (first.id in lvl2Categories3 and level == 3) %} active{% endif %}">
-            <a @mouseover="isHover = true" href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ category.details[0].name }}</a>
+            <a @mouseover="testhover = isHover[0]" href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ category.details[0].name }}</a>
 
             {% if level == 0 %}
-              {% if lvl2Categories0 is not empty and isHover == true %}
+              {% if lvl2Categories0 is not empty and testhover == true %}
                 <ul class="dropdown level{{counter}}">
                   {% for categoryChild in categories if categoryChild.id in lvl2Categories0 %}
                     {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
