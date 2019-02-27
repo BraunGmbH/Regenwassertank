@@ -89,7 +89,7 @@
           "name": "Home",
           "position": "1",
           "item" : {
-            "@type:","Thing",
+            "@type:":"Thing",
             "@id":"{{ webstoreConfig.domainSsl }}"
           }
       },
@@ -99,7 +99,7 @@
           "name": "{{ lastCategory.details[0].name }}",
           "position": "2",
           "item" : {
-            "@type:","Thing",
+            "@type:":"Thing",
             "@id":"{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/{{ lastCategory.details[0].nameUrl }}"
           }
       },
@@ -113,7 +113,7 @@
           "position": "2",
           {% endif %}
           "item" : {
-            "@type:","Thing",
+            "@type:":"Thing",
             "@id":"{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/{{ item.documents[0].data.texts.urlPath }}/a-{{ item.documents[0].data.item.id }}"
           }
       }
