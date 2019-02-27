@@ -1,4 +1,21 @@
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
+
+{{ component( "Ceres::Customer.Components.UserLoginHandler" ) }}
+{{ component( "Ceres::PageDesign.Components.ShippingCountrySelect" ) }}
+{{ component( "Ceres::PageDesign.Components.MobileNavigation" ) }}
+{{ component( "Regenwassertank::ItemList.Components.ItemSearch" ) }}
+{{ component( "Ceres::WishList.Components.WishListCount" ) }}
+{{ component( "Ceres::Basket.Components.BasketPreviewHover" ) }}
+
+{% set lang = services.sessionStorage.getLang() %}
+{% set enabledRoutes = config("IO.routing.enabled_routes") | split(', ') %}
+{% set activeCurrencies = config("Ceres.currency.available_currencies") | split(', ') %}
+{% set enableCurrencySelect = config("Ceres.currency.enable_selection") == "true" and activeCurrencies | length > 0 %}
+{% set currencyFormat = config("Ceres.currency.format") %}
+{% set currencyFormatSelect = config("Ceres.currency.format_selection") %}
+{% set companyLogo  = config("Ceres.header.company_logo") %}
+{% set companyName  = trans("Ceres::Template.headerCompanyName") %}
+
 <header id="page-header" class="top-bar pos-f-t">
 
         <div id="topBar">
@@ -80,10 +97,17 @@
         {% include "Regenwassertank::PageDesign.Partials.Header.Navigation" %}
       </header>
 
-      <div class="container-max page-header">
-          <div class="row">
-              <div id="searchBoxMobile" class="cmp cmp-search-box collapse">
-                  <item-search template="#vue-item-search"></item-search>
-              </div>
-            </div>
+
+{% if category.linklist == "Y" %}
+    {% set initialCategory = { id: category.id } %}
+{% else %}
+    {% set initialCategory = category %}
+{% endif %}
+
+<div class="container-max page-header">
+    <div class="row">
+        <div id="searchBoxMobile" class="cmp cmp-search-box collapse">
+            <item-search template="#vue-item-search"></item-search>
         </div>
+      </div>
+  </div>
