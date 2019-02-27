@@ -83,8 +83,10 @@
   {% endfor %}
 
   {% else %}
+
     {% set level = 0 %}
     {% set counter = 0 %}
+    <p class="hidden">ein Test</p>
       {% for category in categories if category.id in lvl1Categories %}
         {% set urlNow = currentScopeUrl ~ "/" ~ category.details[0].nameUrl %}
 
