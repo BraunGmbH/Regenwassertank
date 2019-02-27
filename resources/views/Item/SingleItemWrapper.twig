@@ -4,7 +4,7 @@
 
 {% set categoryBreadcrumbs = services.category.getHierarchy() %}
 {% set currCat = services.category.get( category.id, lang) %}
-{% set lastCategory = categoryBreadcrumbs | last %}
+{% set lastCategory = categoryBreadcrumbs | first %}
 
 {% if 'ontouchstart' in document.documentElement %}
   {% set isMobile = true %}
