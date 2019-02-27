@@ -8,7 +8,7 @@
 
 {% set setHover = [true, false] %}
 
-<p class="hidden test2">
+<p class="hidden test3">
   {% for test in categories %}
     <span>{{ test.id }}</span>
   {% endfor %}
@@ -86,7 +86,8 @@
 
     {% set level = 0 %}
     {% set counter = 0 %}
-    <p class="hidden">ein Test</p>
+    <li class="hidden">ein Test</li>
+
       {% for category in categories if category.id in lvl1Categories %}
         {% set urlNow = currentScopeUrl ~ "/" ~ category.details[0].nameUrl %}
 
