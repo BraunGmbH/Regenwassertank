@@ -12,7 +12,7 @@
     <span>{{ test.id }}</span>
   {% endfor %}
 </p>
-{% if not isHome %}
+{% if not services.template.isHome() %}
 <ul class="mainmenu">
 
   {% for first in categoryBreadcrumbs %}
