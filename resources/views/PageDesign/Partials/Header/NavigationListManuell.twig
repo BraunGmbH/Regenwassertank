@@ -12,9 +12,9 @@
     <span>{{ test.id }}</span>
   {% endfor %}
 </p>
-
+{% if not isHome %}
 <ul class="mainmenu">
-  {% if not isHome %}
+
   {% for first in categoryBreadcrumbs %}
     {% set level = 0 %}
     {% set counter = 0 %}
@@ -80,11 +80,10 @@
       {% endfor %}
     {% endif %}
   {% endfor %}
-
+</ul>
   {% else %}
-
+<ul class="hometest">
 
     <li class="hidden">ein Test</li>
-
-  {% endif %}
 </ul>
+  {% endif %}
