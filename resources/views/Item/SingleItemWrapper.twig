@@ -90,25 +90,31 @@
           "position": "1",
           "item" : {
             "@type:","Thing",
-            "@id","{{ webstoreConfig.domainSsl }}"
+            "@id":"{{ webstoreConfig.domainSsl }}"
           }
       },
+      {% if lastCategory.details is defined %}
       "ItemListElement": {
           "@type": "ListItem",
           "name": "{{ lastCategory.details[0].name }}",
           "position": "2",
           "item" : {
             "@type:","Thing",
-            "@id","{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/{{ lastCategory.details[0].nameUrl }}"
+            "@id":"{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/{{ lastCategory.details[0].nameUrl }}"
           }
       },
+      {% endif %}
       "ItemListElement": {
           "@type": "ListItem",
           "name": "{{ ItemName.get(item.documents[0].data | itemName, item.documents[0].data.variation.bundleType) }}",
+          {% if lastCategory.details is defined %}
           "position": "3",
+          {% else %}
+          "position": "2",
+          {% endif %}
           "item" : {
             "@type:","Thing",
-            "@id","{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/{{ item.documents[0].data.texts.urlPath }}/a-{{ item.documents[0].data.item.id }}"
+            "@id":"{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/{{ item.documents[0].data.texts.urlPath }}/a-{{ item.documents[0].data.item.id }}"
           }
       }
   }
