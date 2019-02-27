@@ -2,6 +2,8 @@
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 {% import "Ceres::PageDesign.Macros.ItemName" as ItemName %}
 
+{% set currCat = services.category.get( category.id, lang) %}
+
 {% if 'ontouchstart' in document.documentElement %}
   {% set isMobile = true %}
 {% else %}
@@ -76,6 +78,38 @@
           "value": "{{ item.documents[0].data.variation.weightG }}"
       },
       "sku": "{{ item.documents[0].data.variation.number }}"
+  }
+  </script>
+    <script type="application/ld+json"> {
+      "@context": "http://schema.org/",
+      "@type": "BreadcrumbList",
+      "ItemListElement": {
+          "@type": "ListItem",
+          "name": "Home",
+          "position": "1",
+          "item" : {
+            "@type:","Thing",
+            "@id","{{ webstoreConfig.domainSsl }}"
+          }
+      },
+      "ItemListElement": {
+          "@type": "ListItem",
+          "name": "{{ currCat.details[0].name }}",
+          "position": "2",
+          "item" : {
+            "@type:","Thing",
+            "@id","{{ currCat.details[0].nameUrl }}"
+          }
+      },
+      "ItemListElement": {
+          "@type": "ListItem",
+          "name": "{{ ItemName.get(item.documents[0].data | itemName, item.documents[0].data.variation.bundleType) }}",
+          "position": "3",
+          "item" : {
+            "@type:","Thing",
+            "@id","{{ webstoreConfig.domainSsl }}"
+          }
+      }
   }
   </script>
 
