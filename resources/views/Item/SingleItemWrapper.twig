@@ -3,7 +3,6 @@
 {% import "Ceres::PageDesign.Macros.ItemName" as ItemName %}
 
 {% set categoryBreadcrumbs = services.category.getHierarchy() %}
-{% set currCat = services.category.get( category.id, lang) %}
 {% set lastCategory = categoryBreadcrumbs | first %}
 
 {% if 'ontouchstart' in document.documentElement %}
@@ -100,7 +99,7 @@
           "position": "2",
           "item" : {
             "@type:","Thing",
-            "@id","{{ lastCategory.details[0].nameUrl }}"
+            "@id","{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/{{ lastCategory.details[0].nameUrl }}"
           }
       },
       "ItemListElement": {
