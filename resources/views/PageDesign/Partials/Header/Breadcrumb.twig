@@ -14,7 +14,7 @@
           {% for category in categoryBreadcrumbs[:categoryBreadcrumbs | length - 1 ] if not break %}
               {% if category.details[0] %}
                   <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                      <a data-category-id="{{ category.id }}" data-category-type="item" itemprop="item" href="{{ category.details[0].nameUrl }}"><span itemprop="name">{{ category.details[0].name }}</span></a>
+                      <a itemprop="item" href="{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/{{ category.details[0].nameUrl }}"><span itemprop="name">{{ category.details[0].name }}</span></a>
                       <meta itemprop="position" content="{{count}}" />
                   </li>
               {% else %}
