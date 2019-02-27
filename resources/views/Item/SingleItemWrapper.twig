@@ -2,6 +2,7 @@
 {% import "Ceres::PageDesign.Macros.LayoutContainer" as LayoutContainer %}
 {% import "Ceres::PageDesign.Macros.ItemName" as ItemName %}
 
+{% set categoryBreadcrumbs = services.category.getHierarchy() %}
 {% set currCat = services.category.get( category.id, lang) %}
 {% set lastCategory = categoryBreadcrumbs | last %}
 
