@@ -2,7 +2,7 @@
 {% set homepageURL = services.url.getHomepageURL() %}
 
 {% if categoryBreadcrumbs is not empty %}
-    <nav data-component="breadcrumbs" data-renderer="twig" class="container-max small test3">
+    <nav data-component="breadcrumbs" data-renderer="twig" class="container-max small test4">
         <ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
           <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
               <span>Sie sind hier:&nbsp;</span><span class="fa fa-home"><span itemprop="name" class="sr-only">Home</span></span>
@@ -14,7 +14,7 @@
           {% for category in categoryBreadcrumbs[:categoryBreadcrumbs | length - 1 ] if not break %}
               {% if category.details[0] %}
                   <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                      <a itemprop="item" href="{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/{{ category.details[0].nameUrl }}"><span itemprop="name">{{ category.details[0].name }}</span></a>
+                      <a data-category-id="{{ category.id }}" data-category-type="item" itemprop="item" href="{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/{{ category.details[0].nameUrl }}"><span itemprop="name">{{ category.details[0].name }}</span></a>
                       <meta itemprop="position" content="{{count}}" />
                   </li>
               {% else %}
