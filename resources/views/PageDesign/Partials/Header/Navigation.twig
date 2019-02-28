@@ -1,9 +1,5 @@
 <!-- Insert markup for navigation here -->
-{% set companyLogo  = config("Ceres.header.company_logo") %}
 {% set lang         = services.sessionStorage.getLang() %}
-{% set showHeaderNavBar = config("Ceres.header.show_navbars") %}
-{% set companyName  = trans("Ceres::Template.headerCompanyName") %}
-{% set useMegaMenu  = config("Ceres.header.megamenu_levels") > 1 %}
 
 <nav class="navbar megamenu">
     <div class="container">
@@ -18,9 +14,7 @@
                 </ul>
                     {# includeCached('Ceres::PageDesign.Partials.Header.NavigationList.twig') #}
                     {% include "Regenwassertank::PageDesign.Partials.Header.NavigationListManuell" %}
-
             </div>
-
         </div>
     </div>
 </nav>

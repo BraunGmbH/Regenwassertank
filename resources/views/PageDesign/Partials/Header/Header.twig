@@ -26,8 +26,10 @@
 </header>
 {% endif %}
 
+<div>
 {% if category.linklist == "Y" %}
     {% set initialCategory = { id: category.id } %}
 {% else %}
     {% set initialCategory = category %}
 {% endif %}
+</div>
