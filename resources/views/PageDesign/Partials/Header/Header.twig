@@ -16,98 +16,25 @@
 {% set companyLogo  = config("Ceres.header.company_logo") %}
 {% set companyName  = trans("Ceres::Template.headerCompanyName") %}
 
-<header id="page-header" class="top-bar pos-f-t">
 
-        <div id="topBar">
-            <div class="container-max">
-              <ul id="headerLinks">
-                <li><a data-toggle="modal" href="#hotline"  title="{{ trans("Regenwassertank::Template.headerHotlineTxt") }}" class="hidden-xs-down"><i class="fa fa-check-circle"></i>{{ trans("Regenwassertank::Template.headerHotlineTxt") }} {{ trans("Regenwassertank::Template.headerHotlineNr") }}</a><a data-toggle="modal" href="#hotline" class="hidden-sm-up"><i class="fa fa-phone"></i><span class="pipe"></span></a></li>
-                <li><a data-toggle="modal" href="#lieferung" title="{{ trans("Regenwassertank::Template.headerLieferung") }}"><i class="fa fa-check-circle"></i>{{ trans("Regenwassertank::Template.headerLieferung") }}</a></li>
-                <li><a data-toggle="modal" href="#ssl" title="{{ trans("Regenwassertank::Template.headerSSL") }}"><i class="fa fa-check-circle"></i>{{ trans("Regenwassertank::Template.headerSSL") }}</a></li>
-              </ul>
+{% set headerContainer = LayoutContainer.show("Ceres::Header") | trim %}
+{% if headerContainer is empty %}
+    {% include "Regenwassertank::PageDesign.Partials.Header.RegenwassertankHeader" %}
+{% else %}
+<header id="page-header" class="pos-f-t">
+    {{ headerContainer | raw }}
+</header>
+{% endif %}
 
-                <ul id="controlsList" class="controls-list list-inline">
-
-                  <li class="list-inline-item control-search visible-sm">
-                      <a class="anicon anicon-search-xcross"
-                         aria-label="toggle search"
-                         data-toggle="collapse"
-                         href="#searchBoxMobile"
-                         aria-expanded="false"
-                         aria-controls="searchBoxMobile"
-                         data-parent="#controlsList">
-                          <span class="fa fa-search" aria-hidden="true"></span>
-                      </a>
-                      <span class="pipe"></span>
-                  </li>
-
-                    <li class="list-inline-item control-user">
-                        <user-login-handler>
-                            <a data-toggle="modal">
-                                <i class="fa fa-user" aria-hidden="true"></i>
-                                <span class="hidden-xs-down">{{ trans("Ceres::Template.login") }}</span>
-                            </a>
-                            <span class="pipe"></span>
-                            <a data-toggle="modal">
-                                <i class="fa fa-user-plus" aria-hidden="true"></i>
-                                <span class="hidden-xs-down">{{ trans("Ceres::Template.loginRegister") }}</span>
-                            </a>
-                        </user-login-handler>
-                    </li>
-
-                    <li class="list-inline-item control-basket">
-                        <a v-toggle-basket-preview href="#" class="toggle-basket-preview">
-                            {% if config("Ceres.header.basket_values") != "sum" %}
-                                <span class="badge-right" v-basket-item-quantity="$store.state.basket.data.itemQuantity">0</span>
-                            {% endif %}
-
-                            <i v-waiting-animation="$store.state.basket.isBasketLoading" waiting-class="fa fa-refresh fa-spin" class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            {% if config("Ceres.header.basket_values") != "quantity" %}
-                                <span class="badge" v-if="!$store.state.basket.showNetPrices" v-basket-item-sum="$store.state.basket.data.itemSum">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
-                                <span class="badge" v-else v-cloak v-basket-item-sum="$store.state.basket.data.itemSumNet">0,00 {{ services.checkout.getCurrencyData()[currencyFormat] }}</span>
-                            {% endif %}
-                        </a>
-
-                        {% if config("Ceres.basket.preview_type") != "right" %}
-                            <basket-preview template="#vue-basket-preview-hover" :show-net-prices="{{ showNetPrices | json_encode }}"></basket-preview>
-                        {% endif %}
-                    </li>
-
-                </ul>
-              </div>
-            </div>
-
-            <div class="container-max middle">
-                <div id="logo">
-                    <a href="{{ homepageURL }}" title="{{ companyName }}">
-                        {% if ('http' in companyLogo) or ('layout/' in companyLogo) %}
-                            <img alt="{{ companyName }}" title="{{ companyName }}" src="{{ companyLogo }}" class="img-fluid" />
-                        {% else %}
-                            <img alt="{{ companyName }}" title="{{ companyName }}" src="{{ plugin_path('Ceres') }}/{{ companyLogo }}" class="img-fluid" />
-                        {% endif %}
-                    </a>
-                </div>
-                <div id="searchBox">
-                    <item-search template="#vue-item-search"></item-search>
-                </div>
-                <div id="tuvSued" style="background-color: #fff">
-                  <img alt="Hotline" title="Hotline" src="https://cdn02.plentymarkets.com/yi9z0xbw5t14/frontend/regenwassertank/ceres/img/hotline.png" class="img-fluid">
-                </div>
-        </div>
-        {% include "Regenwassertank::PageDesign.Partials.Header.Navigation" %}
-      </header>
-
-
+<div>
 {% if category.linklist == "Y" %}
     {% set initialCategory = { id: category.id } %}
 {% else %}
     {% set initialCategory = category %}
 {% endif %}
-
-<div class="container-max page-header">
-    <div class="row">
-        <div id="searchBoxMobile" class="cmp cmp-search-box collapse">
-            <item-search template="#vue-item-search"></item-search>
-        </div>
-      </div>
-  </div>
+<mobile-navigation
+            :navigation-tree-data="{{ categories | json_encode }}"
+            :initial-category="{{ initialCategory | json_encode }}"
+            template="#vue-mobile-navigation">
+    </mobile-navigation>
+</div>
