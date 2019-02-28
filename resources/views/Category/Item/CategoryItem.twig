@@ -98,6 +98,32 @@
      "image": "{{ webstoreConfig.domainSsl }}/documents/{{category.details[0].image2Path}}",
      "description": "{{ category.details[0].metaDescription }}"
  } </script>
+ <script type="application/ld+json"> {
+   "@context": "http://schema.org/",
+   "@type": "BreadcrumbList",
+   "ItemListElement": [
+     {
+       "@type": "ListItem",
+       "name": "Home",
+       "position": "1",
+       "item" : {
+         "@id":"{{ webstoreConfig.domainSsl }}"
+       }
+     },
+
+   {
+     {
+       "@type": "ListItem",
+       "name": "{{ category.details[0].name }}",
+       "position": "2",
+       "item" : {
+         "@id":"{{ services.webstoreConfig.getWebstoreConfig().domainSsl }}/{{ category.details[0].nameUrl }}"
+       }
+     }
+
+   ]
+}
+</script>
 
     {% if currentPage-1 > 0 %}
         <link rel="prev" href="{{ webstoreConfig.domainSsl }}?{{ query | merge({'page' : currentPage-1 }) | url_encode }}" />
