@@ -1,18 +1,11 @@
 {% import "Ceres::Category.Macros.CategoryTree" as Tree %}
-{% set lang = services.sessionStorage.getLang() %}
+
 
 {% set lvl1Categories = [1457, 1459, 724, 1458] %}
 {% set lvl2Categories0 = [1292, 1289, 1293, 1449, 1448, 1446, 1447, 1451, 1454, 1453, 1452] %}
 {% set lvl2Categories1 = [1093, 1094, 1095, 1091, 401, 1353] %}
 {% set lvl2Categories2 = [171, 172, 174, 173, 176] %}
 {% set lvl2Categories3 = [408, 170] %}
-
-
-<p class="hidden test4">
-  {% for test in categories %}
-    <span>{{ test.id }}</span>
-  {% endfor %}
-</p>
 
 <ul class="mainmenu">
   {% if not services.template.isHome() %}
@@ -143,16 +136,4 @@
         {% endif %}
       {% endfor %}
   {% endif %}
-</ul>
-<ul class="hidden">
-    {{ Tree.get_nav_bar(
-        categories,
-        "",
-        ceresConfig.header.megamenuLevels,
-        {
-            "1": ceresConfig.header.megamenuItemsStage1,
-            "2": ceresConfig.header.megamenuItemsStage2,
-            "3": ceresConfig.header.megamenuItemsStage3
-        }
-    ) }}
 </ul>
