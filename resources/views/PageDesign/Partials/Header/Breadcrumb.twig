@@ -2,7 +2,7 @@
 {% set homepageURL = services.url.getHomepageURL() %}
 
 {% if categoryBreadcrumbs is not empty %}
-    <nav data-component="breadcrumbs" data-renderer="twig" class="container-max small test5">
+    <nav data-component="breadcrumbs" data-renderer="twig" class="container-max small">
         <ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
           <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
               <span>Sie sind hier:&nbsp;</span><span class="fa fa-home"><span itemprop="name" class="sr-only">Home</span></span>
@@ -36,4 +36,5 @@
             {% endif %}
         </ul>
     </nav>
+    <category-breadcrumbs template="#vue-category-breadcrumbs"></category-breadcrumbs>
 {% endif %}
