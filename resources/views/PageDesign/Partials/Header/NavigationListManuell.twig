@@ -1,3 +1,4 @@
+{% import "Ceres::Category.Macros.CategoryTree" as Tree %}
 {% set lang = services.sessionStorage.getLang() %}
 
 {% set lvl1Categories = [1457, 1459, 724, 1458] %}
@@ -7,7 +8,7 @@
 {% set lvl2Categories3 = [408, 170] %}
 
 
-<p class="hidden test3">
+<p class="hidden test4">
   {% for test in categories %}
     <span>{{ test.id }}</span>
   {% endfor %}
