@@ -310,7 +310,14 @@
 
 <script>
 
-  
+  new Vue({
+    el: '.nav-link',
+    data: function data() {
+        return {
+            hover: false
+        };
+    }
+  });
 
     var rootElement = document.getElementById("vue-app");
     var errorElement = document.getElementById("vue-error");
