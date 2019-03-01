@@ -8,7 +8,7 @@
                 </span>
             </li>
 
-            <li class="ddown" v-for="category in dataContainer1" v-show="!category.hideCategory">
+            <li class="ddown" v-for="category in dataContainer1" v-if="category.id in hauptmenue" v-show="!category.hideCategory">
                 <a :href="category.url" v-render-category="{ id: category.id, type: category.type, alwaysOpen: true }" @click.prevent="navigateTo(category)" v-if="category.showChildren || category.details[0]">${ category.details[0].name }</a>
 
                 <span class="nav-direction" v-if="category.children && category.showChildren" @click="slideTo(category.children)">
