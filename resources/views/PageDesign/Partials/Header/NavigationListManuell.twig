@@ -18,7 +18,7 @@
 
         {% if category.details[0] %}
           <li id="plentycat_{{ category.id }}" class="level{{ level }} {% if category.id == first.id or (first.id in lvl2Categories0 and level == 0) or (first.id in lvl2Categories1 and level == 1) or (first.id in lvl2Categories2 and level == 2) or (first.id in lvl2Categories3 and level == 3) %} active{% endif %}">
-            <a @mouseover="mouseover" @mouseleave="mouseleave" href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link" title="{{ category.details[0].name }}">{{ category.details[0].name }}</a>
+            <a @mouseover="hover = true" @mouseleave="hover = false" href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link" title="{{ category.details[0].name }}">{{ category.details[0].name }}</a>
 
             {% if level == 0 %}
               {% if lvl2Categories0 is not empty and hover == true %}
