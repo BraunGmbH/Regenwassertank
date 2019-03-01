@@ -6,7 +6,7 @@
 {% set lvl2Categories2 = [171, 172, 174, 173, 176] %}
 {% set lvl2Categories3 = [408, 170] %}
 
-<ul class="mainmenu">
+<ul id="hover" class="mainmenu">
   {% if not services.template.isHome() %}
   {% for first in categoryBreadcrumbs %}
     {% set level = 0 %}
@@ -18,10 +18,10 @@
 
         {% if category.details[0] %}
           <li id="plentycat_{{ category.id }}" class="level{{ level }} {% if category.id == first.id or (first.id in lvl2Categories0 and level == 0) or (first.id in lvl2Categories1 and level == 1) or (first.id in lvl2Categories2 and level == 2) or (first.id in lvl2Categories3 and level == 3) %} active{% endif %}">
-            <a href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link" title="{{ category.details[0].name }}">{{ category.details[0].name }}</a>
+            <a v-on:mouseover="mouseover"  v-on:mouseleave="mouseleave" href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link" title="{{ category.details[0].name }}">{{ category.details[0].name }}</a>
 
             {% if level == 0 %}
-              {% if lvl2Categories0 is not empty %}
+              {% if lvl2Categories0 is not empty and hover == true %}
                 <ul  class="dropdown level{{counter}}">
                   {% for categoryChild in categories if categoryChild.id in lvl2Categories0 %}
                     {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}

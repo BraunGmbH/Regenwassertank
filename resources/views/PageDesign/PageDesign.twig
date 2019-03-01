@@ -309,6 +309,21 @@
 {{ get_filtered_tags() }}
 
 <script>
+
+  new Vue({
+    el: '#hover',
+    data: {
+      hover: false
+    },
+    methods: {
+    mouseover: function(){
+      this.hover = true
+    },
+    mouseleave: function(){
+      this.hover = false
+    }
+    }
+  });
     var rootElement = document.getElementById("vue-app");
     var errorElement = document.getElementById("vue-error");
 
