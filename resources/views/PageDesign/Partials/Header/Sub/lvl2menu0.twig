@@ -1,0 +1,6 @@
+{% for categoryChild in categories if categoryChild.id in lvl2Categories0 %}
+  {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
+  <li id="plentycat_{{ categoryChild.id }}" class="{% if categoryChild.id == first.id %} active{% endif %}">
+    <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link" title="{{ categoryChild.details[0].name }}">{{ categoryChild.details[0].name }}</a>
+  </li>
+{% endfor %}
