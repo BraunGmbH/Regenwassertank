@@ -23,6 +23,11 @@
                     <mobile-navigation
                                 :navigation-tree-data="{{ categories | json_encode }}"
                                 :initial-category="{{ initialCategory | json_encode }}"
+                                :lvl1Categories="{{lvl1Categories}}"
+                                :lvl2Categories0="{{lvl2Categories0}}"
+                                :lvl2Categories1="{{lvl2Categories1}}"
+                                :lvl2Categories2="{{lvl2Categories2}}"
+                                :lvl2Categories2="{{lvl2Categories3}}"
                                 template="#vue-mobile-navigation">
                         </mobile-navigation>
                   <!--  <manuelle-navigation

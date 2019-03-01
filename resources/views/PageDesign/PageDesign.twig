@@ -289,8 +289,8 @@
 {{ Translations.add( "Ceres", "Template" ) }}
 {% if ceresConfig.log.performanceLevel  == 'development' %}
     <script src="{{ plugin_path('Ceres') }}/js/dist/ceres-vendor.js"></script>
-  <script src="{{ plugin_path('Ceres') }}/js/dist/ceres-app.js"></script>
-  <!--<script src="https://cdn02.plentymarkets.com/yi9z0xbw5t14/frontend/regenwassertank/ceres/js/vue.js"></script>-->
+  <!--<script src="{{ plugin_path('Ceres') }}/js/dist/ceres-app.js"></script>-->
+  <script src="https://cdn02.plentymarkets.com/yi9z0xbw5t14/frontend/regenwassertank/ceres/js/vue.js"></script>
 {% else %}
     <script src="{{ plugin_path('Ceres') }}/js/dist/ceres.min.js"></script>
 {% endif %}
