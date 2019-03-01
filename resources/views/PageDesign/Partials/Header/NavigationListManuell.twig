@@ -21,8 +21,8 @@
             <a @mouseover="isHover = true" href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link" title="{{ category.details[0].name }}">{{ category.details[0].name }}</a>
 
             {% if level == 0 %}
-              {% if lvl2Categories0 is not empty and isHover == true %}
-                <ul class="dropdown level{{counter}}">
+              {% if lvl2Categories0 is not empty  %}
+                <ul class="dropdown level{{counter}}" v-show="isHover">
                   {% for categoryChild in categories if categoryChild.id in lvl2Categories0 %}
                     {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
                     <li id="plentycat_{{ categoryChild.id }}" class="{% if categoryChild.id == first.id %} active{% endif %}">
