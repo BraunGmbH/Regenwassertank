@@ -313,16 +313,9 @@
   new Vue({
     el: '#hover',
     data: {
-      hover: false
-    },
-    methods: {
-      mouseover: function(){
-        hover = true
-      },
-      mouseleave: function(){
-        hover = false
-      }
+      isHover: false
     }
+
   });
     var rootElement = document.getElementById("vue-app");
     var errorElement = document.getElementById("vue-error");
