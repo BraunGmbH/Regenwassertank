@@ -1,5 +1,11 @@
 {% set lang = services.sessionStorage.getLang() %}
 
+{% set lvl1Categories = [1457, 1459, 724, 1458] %}
+{% set lvl2Categories0 = [1456, 1292, 1289, 1293, 1449, 1448, 1446, 1447, 1451, 1454, 1453, 1452] %}
+{% set lvl2Categories1 = [1093, 1094, 1095, 1091, 401, 1353] %}
+{% set lvl2Categories2 = [171, 172, 174, 173, 176] %}
+{% set lvl2Categories3 = [408, 170] %}
+
 <nav class="navbar megamenu">
     <div class="container">
         <div class="row">
@@ -12,7 +18,17 @@
                     <li class="btnClose"></li>
                 </ul>
                     {# includeCached('Ceres::PageDesign.Partials.Header.NavigationList.twig') #}
-                    {% include "Regenwassertank::PageDesign.Partials.Header.NavigationListManuell" %}
+                    {# include "Regenwassertank::PageDesign.Partials.Header.NavigationListManuell" #}
+                    <manuelle-navigation
+                                :navigation-tree-data="{{ categories | json_encode }}"
+                                :initial-category="{{ initialCategory | json_encode }}"
+                                :lvl1Categories="{{lvl1Categories}}"
+                                :lvl2Categories0="{{lvl2Categories0}}"
+                                :lvl2Categories1="{{lvl2Categories1}}"
+                                :lvl2Categories2="{{lvl2Categories2}}"
+                                :lvl2Categories2="{{lvl2Categories3}}"
+                                template="#vue-manuelle-navigation">
+                        </manuelle-navigation>
             </div>
         </div>
     </div>

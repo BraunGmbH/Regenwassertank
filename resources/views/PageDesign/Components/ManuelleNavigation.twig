@@ -1,0 +1,19 @@
+<script type="x/template" id="vue-manuelle-navigation">
+    <div class="manuelle-navigation">
+
+
+        <ul v-menu id="manuell-1" class="mainmenu menu-active">
+
+
+            <li class="ddown" v-for="category in dataContainer1" v-if="category.id in menue" v-show="!category.hideCategory">
+                <a :href="category.url" v-render-category="{ id: category.id, type: category.type, alwaysOpen: true }" @click.prevent="navigateTo(category)" v-if="category.showChildren || category.details[0]">${ category.details[0].name }</a>
+
+                <ul v-if="lvl2Categories0">
+                    <li v-for="categoryChild in dataContainer1" v-if="categoryChild.id in lvl2Categories0" :id="'plentycat_' + categoryChild.id">
+                      <a :href="categoryChild.url" class="nav-link" :title="categoryChildy.details[0].name">${ categoryChild.details[0].name }</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</script>
