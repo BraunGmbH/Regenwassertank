@@ -6,7 +6,7 @@
 {{ component( "Ceres::Customer.Components.Login" ) }}
 {{ component( "Ceres::Customer.Components.Registration" ) }}
 {{ component( "Regenwassertank::Basket.Components.AddItemToBasketOverlay" ) }}
-{{ component( "Regenwassertank::PageDesign.Components.Popper" ) }}
+{{ component( "Ceres::PageDesign.Components.Popper" ) }}
 {{ component( "Ceres::Containers.Components.ContainerItemList" ) }}
 {{ component( "Ceres::Containers.Components.LastSeenItemList" ) }}
 {{ component( "Ceres::Category.Components.CategoryBreadcrumbs" ) }}
@@ -289,8 +289,8 @@
 {{ Translations.add( "Ceres", "Template" ) }}
 {% if ceresConfig.log.performanceLevel  == 'development' %}
     <script src="{{ plugin_path('Ceres') }}/js/dist/ceres-vendor.js"></script>
-    <script src="{{ plugin_path('Ceres') }}/js/dist/ceres-app.js"></script>
-  <!--  <script src="https://cdn02.plentymarkets.com/yi9z0xbw5t14/frontend/regenwassertank/ceres/js/vue.js"></script>-->
+  <!--  <script src="{{ plugin_path('Ceres') }}/js/dist/ceres-app.js"></script>-->
+  <script src="https://cdn02.plentymarkets.com/yi9z0xbw5t14/frontend/regenwassertank/ceres/js/vue.js"></script>
 {% else %}
     <script src="{{ plugin_path('Ceres') }}/js/dist/ceres.min.js"></script>
 {% endif %}
@@ -309,8 +309,6 @@
 {{ get_filtered_tags() }}
 
 <script>
-
-
     var rootElement = document.getElementById("vue-app");
     var errorElement = document.getElementById("vue-error");
 
