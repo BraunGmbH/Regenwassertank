@@ -18,11 +18,11 @@
 
         {% if category.details[0] %}
           <li id="plentycat_{{ category.id }}" class="level{{ level }} {% if category.id == first.id or (first.id in lvl2Categories0 and level == 0) or (first.id in lvl2Categories1 and level == 1) or (first.id in lvl2Categories2 and level == 2) or (first.id in lvl2Categories3 and level == 3) %} active{% endif %}">
-            <a v-on:mouseover="mouseover"  v-on:mouseleave="mouseleave" href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link" title="{{ category.details[0].name }}">{{ category.details[0].name }}</a>
+            <a @mouseover="showByIndex = i" @mouseout="showByIndex = null" href="{{ urlNow }}{{ urls.trailingSlashSuffix }}" class="nav-link" title="{{ category.details[0].name }}">{{ category.details[0].name }}</a>
 
             {% if level == 0 %}
-              {% if lvl2Categories0 is not empty and hover == true %}
-                <ul  class="dropdown level{{counter}}">
+              {% if lvl2Categories0 is not empty %}
+                <ul class="dropdown level{{counter}}" v-show="showByIndex === i">
                   {% for categoryChild in categories if categoryChild.id in lvl2Categories0 %}
                     {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
                     <li id="plentycat_{{ categoryChild.id }}" class="{% if categoryChild.id == first.id %} active{% endif %}">

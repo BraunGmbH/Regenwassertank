@@ -310,21 +310,13 @@
 
 <script>
 
-  new Vue({
-    el: '#hover',
-    data: {
-      hover: false
-    },
-    methods: {
-    mouseover: function(){
-      this.hover = true
-    },
-    mouseleave: function(){
-      this.hover = false
-    }
-    }
-  });
-    var rootElement = document.getElementById("vue-app");
+    new Vue({
+      el: '#hover',
+        data: {
+          showByIndex: null
+        },
+    });
+        var rootElement = document.getElementById("vue-app");
     var errorElement = document.getElementById("vue-error");
 
     Vue.options.delimiters = ['${', '}'];
