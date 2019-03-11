@@ -310,9 +310,8 @@
 {{ get_filtered_tags() }}
 
 <script>
-
-export default {
-  name: 'Hover',
+new Vue ({
+  el: '#hover',
   data: () => ({
     ishover : false
   }),
@@ -321,7 +320,8 @@ export default {
       this.ishover = true;
     }
   }
-}
+});
+
 
     var rootElement = document.getElementById("vue-app");
     var errorElement = document.getElementById("vue-error");
