@@ -19,28 +19,28 @@
           {% for categoryChild in categories if categoryChild.id in lvl2Categories0 %}
             {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
             <li id="plentycat_{{ categoryChild.id }}" class="{% if categoryChild.id == first.id %} active{% endif %}">
-              <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
+              <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link" title="{{ categoryChild.details[0].name }}">{{ categoryChild.details[0].name }}</a>
             </li>
           {% endfor %}
         {% elseif category.details[0] and ((first.id == lvl1Categories[1] and category.id == lvl1Categories[1]) or (first.id in lvl2Categories1 and count == 0 )) and lvl2Categories1 is not empty %}
           {% for categoryChild in categories if categoryChild.id in lvl2Categories1 %}
             {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
             <li id="plentycat_{{ categoryChild.id }}"  class="{% if categoryChild.id == first.id %} active{% endif %}">
-              <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
+              <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link" title="{{ categoryChild.details[0].name }}">{{ categoryChild.details[0].name }}</a>
             </li>
           {% endfor %}
         {% elseif category.details[0] and ((first.id == lvl1Categories[2] and category.id == lvl1Categories[2]) or (first.id in lvl2Categories2 and count == 0 )) and lvl2Categories2 is not empty %}
           {% for categoryChild in categories if categoryChild.id in lvl2Categories2 %}
             {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
             <li id="plentycat_{{ categoryChild.id }}" class="{% if categoryChild.id == first.id %} active{% endif %}">
-              <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
+              <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link" title="{{ categoryChild.details[0].name }}">{{ categoryChild.details[0].name }}</a>
             </li>
           {% endfor %}
         {% elseif category.details[0] and ((first.id == lvl1Categories[3] and category.id == lvl1Categories[3]) or (first.id in lvl2Categories3 and count == 0 )) and lvl2Categories3 is not empty %}
           {% for categoryChild in categories if categoryChild.id in lvl2Categories3 %}
             {% set urlNowChild = "/" ~ categoryChild.details[0].nameUrl %}
             <li id="plentycat_{{ categoryChild.id }}" class="{% if categoryChild.id == first.id %} active{% endif %}">
-              <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link">{{ categoryChild.details[0].name }}</a>
+              <a href="{{ urlNowChild }}{{ urls.trailingSlashSuffix }}" class="nav-link" title="{{ categoryChild.details[0].name }}">{{ categoryChild.details[0].name }}</a>
             </li>
           {% endfor %}
         {% endif %}
