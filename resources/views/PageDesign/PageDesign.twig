@@ -266,16 +266,19 @@
 
 <script>
     App = {
-        config: {{ ceresConfig | json_encode | raw }},
-        activeCurrency: "{{ currencyData[currencyFormat] }}",
-        currencyPattern: {{  services.checkout.getCurrencyPattern() | json_encode | raw }},
-        isCategoryView: {% if services.template.isCategory() == "1" %}true{% else %}false{% endif %},
-        isCheckoutView : {% if services.template.isCheckout() == "1" %}true{% else %}false{% endif %},
-        isSearch: {% if services.template.isSearch() == "1" %}true{% else %}false{% endif %},
-        language: "{{ lang }}",
-        defaultLanguage: "{{ defaultLanguage }}",
-        decimalSeparator: "{{ config("IO.format.separator_decimal") }}",
-        urlTrailingSlash: {{ urls.appendTrailingSlash | json_encode }}
+      config: {{ ceresConfig | json_encode | raw }},
+      urls: {{ urls | json_encode | raw }},
+      activeCurrency: "{{ currencyData[currencyFormat] }}",
+      currencyPattern: {{  services.checkout.getCurrencyPattern() | json_encode | raw }},
+      isCategoryView: {% if services.template.isCategory() == "1" %}true{% else %}false{% endif %},
+      isCheckoutView : {% if services.template.isCheckout() == "1" %}true{% else %}false{% endif %},
+      isSearch: {% if services.template.isSearch() == "1" %}true{% else %}false{% endif %},
+      templateEvent: "{{ templateEvent }}",
+      language: "{{ lang }}",
+      defaultLanguage: "{{ defaultLanguage }}",
+      decimalSeparator: "{{ config("IO.format.separator_decimal") }}",
+      urlTrailingSlash: {{ urls.appendTrailingSlash | json_encode }},
+      isShopBuilder: {{ isShopBuilder | default(false) | json_encode }}
     };
 </script>
 
